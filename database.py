@@ -28,13 +28,22 @@ def crear_tabla():
 def guardar_usuarios(usuarios):
     conn = conectar()
     cursor = conn.cursor()
-    
+
     for usuario in usuarios:
         cursor.execute("""
-            INSERT INTO usuarios (id,nombre, usuario, email, ciudad, telefono, sitio_web)
-            VALUES (?,?,?,?,?,?,?)
-        """, (usuario['id'],usuario['name'],usuario['username'], usuario['email'], usuario['address']['city'], usuario['phone'], usuario['website']))
-        
+            INSERT OR IGNORE INTO usuarios
+            (id, nombre, usuario, email, ciudad, telefono, sitio_web)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, (
+            usuario['id'],
+            usuario['name'],
+            usuario['username'],
+            usuario['email'],
+            usuario['address']['city'],
+            usuario['phone'],
+            usuario['website']
+        ))
+
     conn.commit()
     conn.close()
     
