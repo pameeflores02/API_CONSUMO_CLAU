@@ -9,6 +9,7 @@ st.set_page_config(page_title="API-SQLITE-Claudia Aguilar", page_icon=":guardsma
 crear_tabla()
 
 st.title("API-SQLITE-STREAMLIT")
+st.title("By: Claudia Aguilar")
 st.write("Obtener datos de una API y almacenarlos en una BD")
 
 menu=st.sidebar.selectbox(
